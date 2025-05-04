@@ -1,5 +1,5 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
+import { ROUTES } from '../../shared/config/routes'
 
 export default function Navigation() {
   return (
@@ -8,7 +8,7 @@ export default function Navigation() {
         <span className='font-bold'>LDS</span>
         <span>
             <Link to="/">Products</Link>
-            <Link to="/about">About</Link>
+            <Link to={ROUTES.about}>About</Link>
         </span>
     </nav>
   )
