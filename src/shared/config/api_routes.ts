@@ -5,6 +5,7 @@ export const API_ROUTES = {
     },
     auth: {
         login: '/api/auth/login',
+        loginByToken: '/api/auth/token/login',
         logout: '/api/auth/logout',
         pass: (password: string) => `/api/auth/pass?password=${password}`,
         refreshToken: '/api/auth/token/refresh'

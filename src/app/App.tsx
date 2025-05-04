@@ -1,11 +1,13 @@
+
+import { UserProvider } from '../shared/contexts/UserProvider'
 import LDSRoutes from './routes/LDSRoutes'
 
 
 function App() {
   return (
-    <>
-      <LDSRoutes/>
-    </>
+    <UserProvider>  
+        <LDSRoutes />
+    </UserProvider>
   )
 }
 
