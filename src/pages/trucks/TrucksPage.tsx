@@ -1,13 +1,11 @@
-import { useContext, useEffect, useState } from 'react'
 import { Loader } from '../../shared/ui/loader/Loader'
 import { ISlimTruck } from '../../shared/api/models/trucks'
 import SlimTruckCard from '../../entities/ui/trucks/SlimTruckCard'
-import { authService, truckService } from '../../shared/config/services'
 import ErrorMessage from '../../shared/ui/errors/ErrorMessage'
-import { IAuthResult, UserContext } from '../../shared/contexts/user_context'
+import { useEffect, useState } from 'react'
+import { truckService } from '../../shared/config/services'
 
 export default function TrucksPage() {
-	const userContext = useContext(UserContext)
 
 	const [trucks, setTrucks] = useState<ISlimTruck[] | null>([])
 	const [error, setError] = useState('')
@@ -30,15 +28,6 @@ export default function TrucksPage() {
 		setLoading(false)
 	}
 
-	const request = async (result: IAuthResult | any) => {
-		if (result != null && !result.success) {
-			setError('Нет доступа')
-		}
-		else {
-			setError('')
-		}
-
-	}
 
 	useEffect(() => {
 		getTrucks();
@@ -48,12 +37,7 @@ export default function TrucksPage() {
 		<div className="container mx-auto max-w-2xl pt-5">
 			{loading && <Loader />}
 			{error && <ErrorMessage error={error} />}
-
-			<button onClick={async () => request(await userContext.login("boba", "1"))} className='rounded border border-red-400'>LOGIN</button>
-			<button onClick={async () => request(await userContext.logout())} className='rounded border border-red-400'>LOGOUT</button>
-			<button onClick={async () => request(await authService.pass("2"))} className='rounded border border-red-400'>PASS</button>
-			<button onClick={async () => request(await userContext.tryLoginByToken())} className='rounded border border-red-400'>REFRESH</button>
-
+			
 			<div className='container flex justify-center'>
 				<>
 					{
