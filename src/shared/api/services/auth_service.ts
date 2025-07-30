@@ -1,7 +1,7 @@
 import { API_ROUTES } from "../../config/api_routes";
 import api from "../api";
 import { IUser } from "../models/auth";
-import { ILoginRequest } from "../models/requests/auth";
+import { ILoginRequest, IRegisterRequest } from "../models/requests/auth";
 import { IResponse } from "../responses/response";
 import { AbstractService } from "./abstract_service";
 
@@ -16,6 +16,17 @@ export class AuthService extends AbstractService {
                     )
                 ).data
         );
+    }
+
+    public async register(data: IRegisterRequest) : Promise<IResponse<IUser>>{
+        return await this.request<IUser>(
+            async () => (
+                await api.put<IResponse<IUser>>(
+                    API_ROUTES.auth.registration,
+                    data
+                )
+            ).data
+        )
     }
 
     public async loginByToken(): Promise<IResponse<IUser>> {

@@ -1,15 +1,13 @@
 import { useEffect } from "react";
 import loginBackground from "../../assets/images/auth/trucker.gif";
 import logo from "../../assets/images/mountains.png";
-import vk from "../../assets/images/oauth/vk.svg";
-import ok from "../../assets/images/oauth/ok.svg";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { DOMAIN, ROUTES } from "../../shared/config/routes";
-import { LoginForm } from "../../features/ui/auth/LoginForm";
+import { ROUTES } from "../../shared/config/routes";
+import { RegisterForm } from "../../features/ui/auth/RegisterForm";
 
-export function LoginPage() {
+export function RegisterPage() {
     useEffect(() => {
-        document.title = "Вход в LDS";
+        document.title = "Регистрация в LDS";
     }, []);
 
     const location = useLocation();
@@ -17,7 +15,7 @@ export function LoginPage() {
 
     const from = location.state?.from || ROUTES.home;
 
-    const onLogin = () => {
+    const onRegister = () => {
         navigate(from, { replace: true });
     };
 
@@ -45,21 +43,21 @@ export function LoginPage() {
                     </div>
 
                     <div className="flex-8/10 z-20 w-full">
-                        <LoginForm onLogin={onLogin} />
+                        <RegisterForm onRegister={onRegister} />
 
                         <Link
-                            to={ROUTES.auth.register}
+                            to={ROUTES.auth.login}
                             state={{ from: from }}
                             className="text-lds-main hover:underline mt-[10px] hover:text-lds-accent transition-all duration-400"
                         >
-                            ...или Вы можете пройти регистрацию
+                            ...или Вы можете войти в существующий аккаунт
                         </Link>
                     </div>
 
-                    <div className="flex-1/10 flex text-white z-20 align-middle items-center">
+                    {/* <div className="flex-1/10 flex text-white z-20 align-middle items-center">
                         <p className="mr-[10px]">ВХОД ЧЕРЕЗ</p>
 
-                        <a href={ROUTES.auth.vk(DOMAIN + from)} className="my-[25px]">
+                        <a href={ROUTES.auth.vk()} className="my-[25px]">
                             <img
                                 src={vk}
                                 alt="ВКонтакте"
@@ -67,14 +65,14 @@ export function LoginPage() {
                             />
                         </a>
 
-                        <a href={ROUTES.auth.ok(DOMAIN + from)} className="my-[25px]">
+                        <a href={ROUTES.auth.ok} className="my-[25px]">
                             <img
                                 src={ok}
                                 alt="Одноклассники"
                                 className="h-[35px] m-[5px]"
                             />
                         </a>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </>

@@ -10,8 +10,12 @@ export const ROUTES = {
     },
     auth: {
         login: "/auth/login",
-        registration: "/auth/register",
-        vk: (returnUrl: string = DOMAIN) => "http://localhost/api/oauth/vk?returnUrl=" + returnUrl,
-        ok: "http://localhost/api/oauth/ok",
+        register: "/auth/register",
+        vk: (returnUrl: string = DOMAIN) => "http://localhost/api/oauth/vk?returnUrl=" + encodeURIComponent(returnUrl),
+        ok: (returnUrl: string = DOMAIN) => "http://localhost/api/oauth/ok?returnUrl=" + encodeURIComponent(returnUrl),
     },
+    profile: {
+        base: "/profile",
+        me: "/profile/me"
+    }
 };

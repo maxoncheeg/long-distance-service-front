@@ -1,17 +1,22 @@
-import { LoginScheme } from "../../schemes/auth/login_scheme";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { ILoginRequest } from "../../../shared/api/models/requests/auth";
 import { AuthInput } from "../../../shared/ui/inputs/AuthInput";
 import AuthButton from "../../../shared/ui/buttons/DefaultButton";
 import { useContext, useState } from "react";
 import { UserContext } from "../../../shared/contexts/user_context";
+import { RegisterScheme } from "../../schemes/auth/register_scheme";
 
-interface ILoginFormProps {
-    onLogin: () => void;
+interface RegisterProps {
+    email: string;
+    password: string;
+    confirmPassword: string;
 }
 
-export function LoginForm({ onLogin }: ILoginFormProps) {
+interface IRegisterFormProps {
+    onRegister: () => void;
+}
+
+export function RegisterForm({ onRegister }: IRegisterFormProps) {
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
     const [responseError, setResponseError] = useState<string | undefined>(
         undefined
@@ -22,25 +27,28 @@ export function LoginForm({ onLogin }: ILoginFormProps) {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<ILoginRequest>({
-        resolver: yupResolver(LoginScheme),
-        defaultValues: { email: "", password: "" },
+    } = useForm<RegisterProps>({
+        resolver: yupResolver(RegisterScheme),
+        defaultValues: { email: "", password: "", confirmPassword: "" },
         mode: "all",
     });
 
-    const onSubmit = async (data: ILoginRequest) => {
+    const onSubmit = async (data: RegisterProps) => {
         setIsSubmitting(true);
         setResponseError(undefined);
 
-        const result = await userContext.login(data.email, data.password);
-
+        const result = await userContext.register(data.email, data.password);
+        
         setIsSubmitting(false);
 
         if (result.success) {
             console.log("Hello, " + result.user?.email);
             console.log(result.user);
-            onLogin();
-        } else setResponseError("Не удалось выполнить вход. Попробуйте позже.");
+            onRegister();
+        } else
+            setResponseError(
+                "Не удалось зарегистрироваться. Попробуйте позже."
+            );
     };
 
     return (
@@ -66,10 +74,19 @@ export function LoginForm({ onLogin }: ILoginFormProps) {
                 {...register("password")}
             />
 
+            <AuthInput
+                id="confirmPassword"
+                type="password"
+                label="Повторите пароль"
+                placeholder="******"
+                error={errors.confirmPassword?.message}
+                {...register("confirmPassword")}
+            />
+
             <div className="h-[40px] w-full">
                 <AuthButton
-                    text="ВХОД"
-                    disabledText="ВХОДИМ..."
+                    text="ЗАРЕГИСТРИРОВАТЬСЯ"
+                    disabledText="РЕГИСТРАЦИЯ..."
                     disabled={isSubmitting}
                     type="submit"
                 />

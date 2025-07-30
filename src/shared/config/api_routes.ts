@@ -15,6 +15,9 @@ export const API_ROUTES = {
         refreshToken: "/api/auth/token/refresh",
         
     },
+    profile: {
+        me: "/api/profile/me",
+    }
 };
 
 export const API_DOMAIN: string = import.meta.env.VITE_API_URL;

@@ -3,8 +3,20 @@ import { ROUTES } from "../../shared/config/routes";
 import NavLinkButton from "../../shared/ui/navigation/NavLinkButton";
 import AuthBlock from "../auth/NavAuthBlock";
 import logo from "../../assets/images/mountains.png";
+import { useContext } from "react";
+import { UserContext } from "../../shared/contexts/user_context";
 
 export default function Navigation() {
+    const userContext = useContext(UserContext)
+
+
+    const quit = (e: React.MouseEvent) => {
+        e.preventDefault()
+        userContext.logout()
+        window.location.reload();
+    }
+
+
     return (
         <nav className="font-ruda sticky top-0 left-0 h-[70px] block bg-lds-main text-white">
             <div className="justify-start align-middle h-full items-center flex">
@@ -33,10 +45,15 @@ export default function Navigation() {
                                 title="Расчет маршрута"
                                 route={ROUTES.trucks.base}
                             />
-                            <NavLinkButton
-                                title="SO COOL TEST BUTT"
-                                route={ROUTES.home}
-                            />
+                            <button
+                                className="flex-1 text-white h-full content-center block
+                                hover:bg-lds-accent-dark hover:border-b-[5px] border-lds-accent  hover:text-white
+                                hover:active:border-white hover:active:text-white
+                                transition-all duration-200"
+                                onClick={quit}
+                            >
+                                SO COOL TEST LOGOUT
+                            </button>
                             <AuthBlock />
                         </div>
                     </div>

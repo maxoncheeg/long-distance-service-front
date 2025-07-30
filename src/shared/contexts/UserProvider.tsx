@@ -47,7 +47,29 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
             setUser(response.data);
         }
 
-        const result: IAuthResult = { success: response.success, user: response.data };
+        const result: IAuthResult = {
+            success: response.success,
+            user: response.data,
+        };
+        return result;
+    };
+
+    const register = async function (
+        email: string,
+        password: string
+    ): Promise<IAuthResult> {
+        const response = await authService.register({ email, password });
+        console.log(response);
+
+        if (response.success && response.data !== null) {
+            setUser(response.data);
+        }
+
+        const result: IAuthResult = {
+            success: response.success,
+            user: response.data,
+        };
+
         return result;
     };
 
@@ -62,6 +84,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
                 user: user,
                 tryLoginByToken: tryLoginByToken,
                 login: login,
+                register: register,
                 logout: logout,
             }}
         >

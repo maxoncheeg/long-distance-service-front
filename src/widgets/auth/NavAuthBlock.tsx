@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../shared/contexts/user_context";
 import { ROUTES } from "../../shared/config/routes";
-import NavLinkColorButton from "../../shared/ui/navigation/NavLinkColorButton";
+import { NavLinkColorButton } from "../../shared/ui/navigation/NavLinkColorButton";
 
 export default function NavAuthBlock() {
     const userContext = useContext(UserContext);
