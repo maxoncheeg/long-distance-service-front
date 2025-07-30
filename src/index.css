@@ -1,1 +1,24 @@
+@font-face {
+    font-family: Ruda;
+    src: url(../src/assets/fonts/Ruda.ttf);
+}
 @import "tailwindcss";
+@theme {
+    --color-lds-accent: #e56b6f;
+    --color-lds-accent-dark: #6d597a;
+    --color-lds-main: #5e69cb;
+    /* main #0894ac; */
+    --color-lds-dark: black;
+    --color-lds-light: white;
+    --font-ruda: Ruda, "sans-serif";
+
+    --animate-border-white-pulse: border-transparent-pulse 0.5s ease-in-out infinite alternate;
+
+    @keyframes border-transparent-pulse {
+        100% {
+        }
+        0% {
+            border-color: white;
+        }
+    }
+}

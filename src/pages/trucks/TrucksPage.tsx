@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react'
 import { Loader } from '../../shared/ui/loader/Loader'
 import { ISlimTruck } from '../../shared/api/models/trucks'
 import SlimTruckCard from '../../entities/ui/trucks/SlimTruckCard'
-import { authService, truckService } from '../../shared/config/services'
 import ErrorMessage from '../../shared/ui/errors/ErrorMessage'
-import { IResponse } from '../../shared/api/responses/response'
+import { useEffect, useState } from 'react'
+import { truckService } from '../../shared/config/services'
 
 export default function TrucksPage() {
+
 	const [trucks, setTrucks] = useState<ISlimTruck[] | null>([])
 	const [error, setError] = useState('')
 	const [loading, setLoading] = useState(false)
@@ -28,16 +28,6 @@ export default function TrucksPage() {
 		setLoading(false)
 	}
 
-	const request = async (response: IResponse<any>) => {
-		if (!response.success) {
-			setError(response.statusCode.toString() ?? 'какая то ошибочка')
-		}
-		else {
-			setError('')
-			console.log(response.data)
-		}
-
-	}
 
 	useEffect(() => {
 		getTrucks();
@@ -47,12 +37,7 @@ export default function TrucksPage() {
 		<div className="container mx-auto max-w-2xl pt-5">
 			{loading && <Loader />}
 			{error && <ErrorMessage error={error} />}
-
-			<button onClick={async () => request(await authService.login({ login: "boba", password: "1" }))} className='rounded border border-red-400'>LOGIN</button>
-			<button onClick={async () => request(await authService.logout())} className='rounded border border-red-400'>LOGOUT</button>
-			<button onClick={async () => request(await authService.pass("2"))} className='rounded border border-red-400'>PASS</button>
-			<button onClick={async () => request(await authService.refreshToken())} className='rounded border border-red-400'>REFRESH</button>
-
+			
 			<div className='container flex justify-center'>
 				<>
 					{
