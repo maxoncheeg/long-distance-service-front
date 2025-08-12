@@ -24,7 +24,7 @@ export default function NavAuthBlock() {
         <>
             {userContext.user !== null && (
                 <>
-                    <NavLinkColorButton title="ПРОФИЛЬ" route={ROUTES.home} />
+                    <NavLinkColorButton title="ПРОФИЛЬ" route={ROUTES.profile.base} />
                 </>
             )}
             {userContext.user === null && (

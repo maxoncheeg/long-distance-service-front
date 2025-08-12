@@ -9,10 +9,11 @@
     --color-lds-main: #5e69cb;
     /* main #0894ac; */
     --color-lds-dark: black;
-    --color-lds-light: white;
+    --color-lds-light: #f5fcff;
     --font-ruda: Ruda, "sans-serif";
 
-    --animate-border-white-pulse: border-transparent-pulse 0.5s ease-in-out infinite alternate;
+    --animate-border-white-pulse: border-transparent-pulse 0.5s ease-in-out
+        infinite alternate;
 
     @keyframes border-transparent-pulse {
         100% {

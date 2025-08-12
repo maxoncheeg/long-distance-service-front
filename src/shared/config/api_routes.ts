@@ -17,6 +17,9 @@ export const API_ROUTES = {
     },
     profile: {
         me: "/api/profile/me",
+    },
+    order:{
+        getSlimOrders: (take: number, skip: number) => `/api/orders?skip=${skip}&take=${take}`
     }
 };
 
