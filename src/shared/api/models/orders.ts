@@ -1,6 +1,8 @@
+import { ISlimVehicle } from "./vehicles";
+
 export interface ISlimOrder {
     id: number;
-    vehicle: null;
+    vehicle: ISlimVehicle;
     receiverType: string;
     senderType: string;
     receiverId: number;

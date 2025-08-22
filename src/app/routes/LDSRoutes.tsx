@@ -10,25 +10,31 @@ import { LoginPage } from "../../pages/auth/LoginPage";
 import { RegisterPage } from "../../pages/auth/RegisterPage";
 import ProfilePage from "../../pages/profile/ProfilePage";
 import { AwesomeTestPage } from "../../pages/test/AwesomeTestPage";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 export default function LDSRoutes() {
     return (
         <Routes>
             <Route element={<NavigationLayout />}>
                 <Route index path={ROUTES.home} element={<Home />} />
+
                 <Route path={ROUTES.trucks.base} element={<TrucksPage />} />
+
                 <Route path={ROUTES.about} element={<About />} />
+
+                <Route path="t" element={<AwesomeTestPage />} />
+
+                <Route element={<ProtectedRoute />}>
+                    <Route
+                        path={ROUTES.profile.base}
+                        element={<ProfilePage />}
+                    /></Route>
             </Route>
-            <Route element={<NavigationLayout />}>
-                <Route index path={ROUTES.profile.base} element={<ProfilePage />} />
-            </Route>
+
             <Route element={<EmptyLayout />}>
                 <Route path={ROUTES.trucks.byId} element={<TruckByIdPage />} />
                 <Route path={ROUTES.auth.login} element={<LoginPage />} />
                 <Route path={ROUTES.auth.register} element={<RegisterPage />} />
-            </Route>
-            <Route element={<NavigationLayout />}>
-                <Route index path="t" element={<AwesomeTestPage />} />
             </Route>
         </Routes>
     );

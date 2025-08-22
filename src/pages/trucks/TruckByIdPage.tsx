@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { truckService } from '../../shared/config/services';
-import { ITruck } from '../../shared/api/models/trucks';
+import { vehicleService } from '../../shared/config/services';
+import { IVehicle } from '../../shared/api/models/vehicles';
 import ErrorMessage from '../../shared/ui/errors/ErrorMessage';
 
 
 export default function TruckByIdPage() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    const [truck, setTruck] = useState<ITruck | null>(null);
+    const [truck, setTruck] = useState<IVehicle | null>(null);
 
     const { id } = useParams()
     const idNumber = Number(id)
@@ -21,7 +21,7 @@ export default function TruckByIdPage() {
             return
         }
 
-        const response = await truckService.getTruckById(idNumber)
+        const response = await vehicleService.getTruckById(idNumber)
         if (response.success && response.data != null) {
             setTruck(response.data)
             setError('')

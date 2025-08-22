@@ -13,7 +13,7 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
             "LOG BY TOK: " + response.statusCode + " " + response.message
         );
 
-        if (response.statusCode === 401) {
+        if (!response.success) {
             const refreshResponse = await authService.refreshToken();
             console.log(
                 "REFR TOK: " +
@@ -22,13 +22,14 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
                     refreshResponse.message
             );
 
-            if (response.success) {
+            if (refreshResponse.success) {
                 setUser(refreshResponse.data);
                 return { success: true };
             }
         }
 
         const result: IAuthResult = { success: response.success };
+        
         if (result.success) {
             setUser(response.data);
         } else setUser(null);

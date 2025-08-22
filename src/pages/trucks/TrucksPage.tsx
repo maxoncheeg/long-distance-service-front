@@ -1,19 +1,19 @@
 import { Loader } from '../../shared/ui/loader/Loader'
-import { ISlimTruck } from '../../shared/api/models/trucks'
+import { ISlimVehicle } from '../../shared/api/models/vehicles'
 import SlimTruckCard from '../../entities/ui/trucks/SlimTruckCard'
 import ErrorMessage from '../../shared/ui/errors/ErrorMessage'
 import { useEffect, useState } from 'react'
-import { truckService } from '../../shared/config/services'
+import { vehicleService } from '../../shared/config/services'
 
 export default function TrucksPage() {
 
-	const [trucks, setTrucks] = useState<ISlimTruck[] | null>([])
+	const [trucks, setTrucks] = useState<ISlimVehicle[] | null>([])
 	const [error, setError] = useState('')
 	const [loading, setLoading] = useState(false)
 
 	const getTrucks = async () => {
 		setLoading(true)
-		const response = await truckService.getSlimTrucks();
+		const response = await vehicleService.getSlimTrucks();
 
 		if (response.success && response.data != null && response.data.length > 0) {
 			setTrucks(response.data)
