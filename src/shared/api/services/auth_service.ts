@@ -21,7 +21,7 @@ export class AuthService extends AbstractService {
     public async register(data: IRegisterRequest) : Promise<IResponse<IUser>>{
         return await this.request<IUser>(
             async () => (
-                await api.put<IResponse<IUser>>(
+                await api.post<IResponse<IUser>>(
                     API_ROUTES.auth.registration,
                     data
                 )

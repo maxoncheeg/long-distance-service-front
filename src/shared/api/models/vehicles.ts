@@ -1,10 +1,11 @@
-export interface ISlimTruck {
+export interface ISlimVehicle {
     id: number;
-    brandAndModel: string;
-    image: string;
+    name: string;
+    licensePlate: string;
+    imagePath: string;
 }
 
-export interface ITruck {
+export interface IVehicle {
     id: number;
     brand: string;
     model: string;

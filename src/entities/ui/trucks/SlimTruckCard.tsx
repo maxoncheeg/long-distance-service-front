@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import { ISlimTruck } from '../../../shared/api/models/trucks'
+import { ISlimVehicle } from '../../../shared/api/models/vehicles'
 import { ROUTES } from '../../../shared/config/routes'
 
 interface ISlimTruckProps {
-  truck: ISlimTruck
+  truck: ISlimVehicle
 }
 
 export default function SlimTruckCard({ truck }: ISlimTruckProps) {
@@ -14,7 +14,7 @@ export default function SlimTruckCard({ truck }: ISlimTruckProps) {
       </div>
       <div className='px-2.5 text-center w-full py-1.5'>
         <h3>
-          {truck.brandAndModel}
+          {truck.name}
         </h3>
         <Link to={ROUTES.trucks.byIdGeneric(truck.id)}
           className='w-full border rounded border-blue-950 fill-blue-100 text-blue-950 block'>

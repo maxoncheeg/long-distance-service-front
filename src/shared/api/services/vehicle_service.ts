@@ -1,29 +1,29 @@
-import { ISlimTruck, ITruck } from "../models/trucks";
+import { ISlimVehicle, IVehicle } from "../models/vehicles";
 import { API_ROUTES } from "../../config/api_routes";
 import api from "../api";
 import { AbstractService } from "./abstract_service";
 import { IResponse } from "../responses/response";
 
-export class TruckService extends AbstractService {
+export class VehicleService extends AbstractService {
     public async getSlimTrucks(
         take: number = 10,
         skip: number = 0
-    ): Promise<IResponse<ISlimTruck[]>> {
-        return await this.request<ISlimTruck[]>(
+    ): Promise<IResponse<ISlimVehicle[]>> {
+        return await this.request<ISlimVehicle[]>(
             async () =>
                 (
-                    await api.get<IResponse<ISlimTruck[]>>(
+                    await api.get<IResponse<ISlimVehicle[]>>(
                         API_ROUTES.trucks.getList(skip, take)
                     )
                 ).data
         );
     }
 
-    public async getTruckById(id: number): Promise<IResponse<ITruck>> {
-        return await this.request<ITruck>(
+    public async getTruckById(id: number): Promise<IResponse<IVehicle>> {
+        return await this.request<IVehicle>(
             async () =>
                 (
-                    await api.get<IResponse<ITruck>>(
+                    await api.get<IResponse<IVehicle>>(
                         API_ROUTES.trucks.getById(id)
                     )
                 ).data

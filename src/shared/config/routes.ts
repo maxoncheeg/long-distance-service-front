@@ -11,8 +11,8 @@ export const ROUTES = {
     auth: {
         login: "/auth/login",
         register: "/auth/register",
-        vk: (returnUrl: string = DOMAIN) => "http://localhost/api/oauth/vk?returnUrl=" + encodeURIComponent(returnUrl),
-        ok: (returnUrl: string = DOMAIN) => "http://localhost/api/oauth/ok?returnUrl=" + encodeURIComponent(returnUrl),
+        vk: (returnUrl: string = DOMAIN, register: boolean = false) => "http://localhost/api/oauth/vk?returnUrl=" + encodeURIComponent(returnUrl) + (register ? "&register=true" : ""),
+        ok: (returnUrl: string = DOMAIN, register: boolean = false) => "http://localhost/api/oauth/ok?returnUrl=" + encodeURIComponent(returnUrl) + (register ? "&register=true" : ""),
     },
     profile: {
         base: "/profile",

@@ -1,3 +1,10 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw; /* полная ширина экрана */
+    box-sizing: border-box;
+}
+
 @font-face {
     font-family: Ruda;
     src: url(../src/assets/fonts/Ruda.ttf);
@@ -9,10 +16,12 @@
     --color-lds-main: #5e69cb;
     /* main #0894ac; */
     --color-lds-dark: black;
-    --color-lds-light: white;
+    --color-lds-light: #f5fcff;
+    --color-lds-main-light: #b4b7d1;
     --font-ruda: Ruda, "sans-serif";
 
-    --animate-border-white-pulse: border-transparent-pulse 0.5s ease-in-out infinite alternate;
+    --animate-border-white-pulse: border-transparent-pulse 0.5s ease-in-out
+        infinite alternate;
 
     @keyframes border-transparent-pulse {
         100% {

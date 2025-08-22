@@ -19,7 +19,7 @@ export default function Navigation() {
 
     return (
         <nav className="font-ruda sticky top-0 left-0 h-[70px] block bg-lds-main text-white">
-            <div className="justify-start align-middle h-full items-center flex">
+            <div className="justify-start align-middle h-full items-center flex overflow-hidden">
                 <div className="flex-1 h-full justify-start align-middle items-center content-center text-center flex  px-5">
                     <img src={logo} alt="logo" className="h-[50%]" />
                     <Link
